@@ -1,7 +1,7 @@
 /**
  * Created by jinhua on 2018/12/27.
  */
-import '../css/loadImg.css'
+
 export default  (src) => {
   return new Promise((resolve, reject) => {
     let img = document.createElement("img");

@@ -1,11 +1,12 @@
+'use strict';
 // 自带的库
 const path = require('path');
 module.exports = {
   entry:  './app/index.js', // 入口文件
   output: {
-    path: path.resolve(__dirname, 'build'), // 必须使用绝对地址，输出文件夹
+    path: path.resolve(__dirname, './build'), // 必须使用绝对地址，输出文件夹
     filename: "bundle.js", // 打包后输出文件的文件名
-    publicPath: 'build/' // 打包后的文件夹
+    publicPath: './build/' // 打包后的文件夹
   },
   module: {
     rules: [
@@ -27,16 +28,22 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/, //
-        use: ["style-loader",
+        test: /\.css$/, //css文件使用loader
+        use: [
+          {
+            loader: "style-loader/useable",
+          },
           {
             loader: "css-loader",
             options: {
-              modules: true
+              modules: false
             }
           }
         ]
       }
     ]
-  }
+  },
+  plugins: [
+
+  ]
 };

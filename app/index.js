@@ -1,12 +1,16 @@
 import sum from './sum';
 import loadImg from './loadImg'
+import toggleBg from './toggleBg'
 
-alert(sum(1, 2));
-const src = require("../images/ye.jpg");
+
+console.log(sum(1, 2));
+const src = require("../images/logo.png");
 loadImg(src).then(img => {
-  alert(`图片的宽度：${img.width}`);
+  console.log(`图片的宽度：${img.width}`);
   return img;
 }).then(img =>{
-  alert(`图片的高度：${img.height}`);
+  console.log(`图片的高度：${img.height}`);
   document.getElementById("app").appendChild(img);
 });
+
+toggleBg();
