@@ -12,5 +12,3 @@ loadImg(src).then(img => {
   console.log(`图片的高度：${img.height}`);
   document.getElementById("app").appendChild(img);
 });
-
-toggleBg();

@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "webpack-demo",
   "scripts": {
-    "start": "webpack"
+    "build": "webpack",
+    "dev": "webpack-dev-server --open"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -14,6 +15,7 @@
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "webpack": "^3.5.6",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^2.11.1"
   }
 }

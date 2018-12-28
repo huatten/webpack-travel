@@ -1,12 +1,13 @@
 'use strict';
 // 自带的库
 const path = require('path');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   entry:  './app/index.js', // 入口文件
   output: {
     path: path.resolve(__dirname, './build'), // 必须使用绝对地址，输出文件夹
     filename: "bundle.js", // 打包后输出文件的文件名
-    publicPath: './build/' // 打包后的文件夹
+    publicPath: '/build/' // 打包后的文件夹  必须写不然没法自动编译 ！！！！
   },
   module: {
     rules: [
@@ -29,21 +30,22 @@ module.exports = {
       },
       {
         test: /\.css$/, //css文件使用loader
-        use: [
-          {
-            loader: "style-loader/useable",
-          },
-          {
-            loader: "css-loader",
+        // 写法和之前基本一致
+        loader: ExtractTextPlugin.extract({
+          // 必须这样写，否则会报错
+          fallback: 'style-loader',
+          use: [{
+            loader: 'css-loader',
             options: {
-              modules: false
+              modules: true
             }
-          }
-        ]
+          }]
+        })
       }
     ]
   },
   plugins: [
-
+    // 输出的文件路径
+    new ExtractTextPlugin("css/app.css")
   ]
 };
