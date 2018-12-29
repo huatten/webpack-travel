@@ -2,15 +2,30 @@
 // 自带的库
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-module.exports = {
-  entry:  './app/index.js', // 入口文件
+const config = {
+  entry:  './src/js/index.js', // 入口文件
   output: {
     path: path.resolve(__dirname, './build'), // 必须使用绝对地址，输出文件夹
     filename: "bundle.js", // 打包后输出文件的文件名
     publicPath: '/build/' // 打包后的文件夹  必须写不然没法自动编译 ！！！！
   },
+  resolve: {
+    extensions: ['.js', '.vue', '.json']
+  },
   module: {
     rules: [
+      {
+        test:/\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          loaders: {
+            css: ExtractTextPlugin.extract({
+              use: 'css-loader',
+              fallback: 'vue-style-loader'
+            })
+          }
+        }
+      },
       {
         test: /\.js$/, //js文件使用babel
         use: {
@@ -37,7 +52,7 @@ module.exports = {
           use: [{
             loader: 'css-loader',
             options: {
-              modules: true
+              modules: false
             }
           }]
         })
@@ -49,3 +64,4 @@ module.exports = {
     new ExtractTextPlugin("css/app.css")
   ]
 };
+module.exports = config;
